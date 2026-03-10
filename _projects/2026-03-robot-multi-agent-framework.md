@@ -2,7 +2,6 @@
 title: "Multi-Agent Framework for Natural Language-Based Human-Robot Collaboration"
 collection: projects
 permalink: /projects/multi-agent-framework/
-<a href="/files/multi-agent-framework-thesis.pdf" class="btn btn--primary" target="_blank">Download Full Document (PDF)</a>   <a href="/files/multi-agent-framework-executive-summary.pdf" class="btn btn--info" target="_blank">Download Executive Summary (PDF)</a>
 date: 2026-03-01
 layout: single
 author_profile: true
