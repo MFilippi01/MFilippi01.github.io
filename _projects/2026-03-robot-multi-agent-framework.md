@@ -11,6 +11,22 @@ classes: wide
 excerpt: "Master's thesis on a configuration-driven multi-agent framework for robotic task planning and execution."
 ---
 
+## Downloads
+
+**Master’s Thesis – Full Document**
+
+Complete version of the thesis including the full description of the framework architecture, implementation details, and experimental validation.
+
+[Download Full Thesis (PDF)](/files/Tesi_Matteo_Filippi__consegna.pdf)
+
+---
+
+**Executive Summary**
+
+Short overview of the project highlighting the main objectives, architecture, and key contributions.
+
+[Download Executive Summary (PDF)](/files/Executive_Summary_consegna.pdf)
+
 ## Overview
 
 This project presents the development of a configuration-driven multi-agent framework designed to enable robotic task planning starting from natural language instructions.
