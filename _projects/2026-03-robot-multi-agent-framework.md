@@ -11,19 +11,6 @@ classes: wide
 excerpt: "Master's thesis on a configuration-driven multi-agent framework for robotic task planning and execution."
 ---
 
-collection: projects
-permalink: /projects/multi-agent-framework/
-date: 2026-03-01
-layout: single
-author_profile: true
-toc: true
-toc_sticky: true
-classes: wide
-excerpt: "Master's thesis on a configuration-driven multi-agent framework for robotic task planning and execution."
----
-
-<h2>Downloads</h2>
-
 <p>
 <a href="/files/multi-agent-framework-thesis.pdf" class="btn btn--primary" target="_blank">Download Full Document (PDF)</a>
 <a href="/files/multi-agent-framework-executive-summary.pdf" class="btn btn--info" target="_blank">Download Executive Summary (PDF)</a>
