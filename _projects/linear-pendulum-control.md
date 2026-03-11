@@ -22,7 +22,7 @@ Its objective was the **modeling, simulation, and control of a linear inverted p
 The system consists of a **pendulum mounted on a motorized cart moving along a horizontal rail**. The project included the derivation of the system model, **experimental parameter identification**, development of a **Simulink simulation model**, and the design of different control strategies such as **PID and LQR controllers**.  
 Additional work included **signal filtering** to handle measurement noise and the implementation of an **energy-based swing-up control** to bring the pendulum from the downward to the upright equilibrium.
 
-![System Setup](/images/pendulum_system_setup.png)
+<p align="center"> <img src="/images/pendulum_system_setup.png" width="65%"> </p>
 
 
 ## System Modeling
@@ -30,7 +30,7 @@ Additional work included **signal filtering** to handle measurement noise and th
 The analytical model of the system was derived using the **Lagrangian approach**.  
 The system has two degrees of freedom: the **horizontal displacement of the cart** \(x\) and the **pendulum angle** \(\theta\).
 
-![System Model](/images/pendulum_system_model.png)
+<p align="center"> <img src="/images/pendulum_system_model.png" width="65%"> </p>
 
 By applying the Lagrange equations, the following **two coupled nonlinear equations of motion** are obtained:
 
@@ -211,7 +211,7 @@ This virtual representation of the system allows the dynamics to be analyzed and
 The nonlinear equations of motion derived from the analytical model were implemented in **Simulink**, reproducing the dynamic interaction between the cart and the pendulum.  
 The resulting model accurately replicates the system behavior and provides a reliable environment for controller design and testing.
 
-![Simulink Model](/images/simulink_model.png)
+<p align="center"> <img src="/images/simulink_model.jpg" width="65%"> </p>
 
 ### Model Validation
 
@@ -219,11 +219,20 @@ To validate the accuracy of the simulation model, its response was compared with
 Two experiments were performed: the **free decay of the pendulum** and the **cart response to a constant motor input**.  
 The comparison shows a strong agreement between simulation and real measurements, confirming the reliability of the model and the identified parameters.
 
-<p align="center">
-<img src="/images/free_decay_validation.png" width="45%">
-&nbsp;&nbsp;&nbsp;
-<img src="/images/constant_force_validation.png" width="45%">
-</p>
+<div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start;">
+
+<div style="text-align: center;">
+<img src="/images/free_decay_validation.png" width="450">
+<figcaption>Free decay dynamics comparison.</figcaption>
+</div>
+
+<div style="text-align: center;">
+<img src="/images/constant_force_validation.png" width="450">
+<figcaption>cart response to a constant motor input comparison.</figcaption>
+</div>
+
+</div>
+
 
 
 ## System Control Design
@@ -238,12 +247,12 @@ The controller was designed to stabilize the pendulum around the **upright unsta
 
 The control architecture was implemented in **Simulink** as a feedback loop where the measured pendulum angle is used to compute the control force applied to the cart.
 
-![PID Simulink Scheme](/images/pid_system.png)
+<p align="center"> <img src="/images/pid_system.png" width="65%"> </p>
 
 The PID gains were tuned using MATLAB’s **`pidtune`** function, which automatically selects the parameters to balance settling time, overshoot, and robustness.  
 After tuning the controller, the following behavior was obtained when stabilizing the pendulum in the upright position.
 
-![PID Result](/images/pid_upward_result.png)
+<p align="center"> <img src="/images/pid_upward_result.png" width="65%"> </p>
 
 A comparison between simulation and laboratory results revealed an interesting discrepancy.  
 While the simulation predicts a **linear motion of the cart**, the real system exhibits a **quadratic trajectory**, meaning the cart tends to accelerate during stabilization.  
@@ -276,17 +285,25 @@ where \(K\) is the optimal feedback gain matrix obtained by solving the Riccati 
 
 The controller was implemented in **Simulink** using the state-space model of the system.
 
-![LQR Simulink Scheme](/images/lqr_system.png)
+<p align="center"> <img src="/images/lqr_system.png" width="65%"> </p>
 
 The weighting matrices \(Q\) and \(R\) were tuned through a **grid search procedure**, evaluating multiple combinations and selecting the configuration that provided the best compromise between **settling time and overshoot**.
 
 The following plots show the resulting system behavior in simulation and in laboratory experiments.
 
-<p align="center">
-<img src="/images/lqr_simulation_results.png" width="45%">
-&nbsp;&nbsp;&nbsp;
-<img src="/images/lqr_lab_results.png" width="45%">
-</p>
+<div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start;">
+
+<div style="text-align: center;">
+<img src="/images/lqr_simulation_results.jpg" width="450">
+<figcaption>LQR simulation results.</figcaption>
+</div>
+
+<div style="text-align: center;">
+<img src="/images/lqr_lab_results.jpg" width="450">
+<figcaption>LQR laboratory results.</figcaption>
+</div>
+
+</div>
 
 
 ## Filtering
@@ -295,7 +312,6 @@ As observed during the control experiments, the **sensor measuring the pendulum 
 Although the simulation model showed that the controllers could stabilize the system, real-world measurements introduced disturbances that degraded the control performance.
 
 To address this issue, **signal filtering techniques** were implemented to improve the quality of the state measurements. Two approaches were investigated:
-
 - a **Low-Pass Filter (LPF)** to attenuate high-frequency noise  
 - a **Kalman Filter (KF)** for model-based state estimation
 
@@ -311,7 +327,7 @@ As expected, applying the filter introduces a **small delay** in the signal, whi
 
 The following figure shows the effect of the filtering process on the pendulum angle measurement.
 
-![LPF Filtering Result](/images/lpf_filtering_result.png)
+<p align="center"> <img src="/images/lpf_filtering_result.jpg" width="65%"> </p>
 
 ### Kalman Filter
 
@@ -349,11 +365,20 @@ Once the pendulum angle enters a small region around the upright configuration (
 
 The following figures show the swing-up behavior obtained in simulation and on the real laboratory system.
 
-<p align="center">
-<img src="/images/swingup_simulation.png" width="45%">
-&nbsp;&nbsp;&nbsp;
-<img src="/images/swingup_lab.png" width="45%">
-</p>
+<div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start;">
+
+<div style="text-align: center;">
+<img src="/images/swingup_simulation.jpg" width="450">
+<figcaption>Swing up simulation.</figcaption>
+</div>
+
+<div style="text-align: center;">
+<img src="/images/swingup_lab.jpg" width="450">
+<figcaption>Swing up laboratory exeuction.</figcaption>
+</div>
+
+</div>
+
 
 
 ## Conclusions
