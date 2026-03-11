@@ -9,7 +9,7 @@ author_profile: true
 
 You can reach me through the following channels:
 
-**Email:** your.email@example.com  
+**Email:** filippimatteo2001@gmail.com  
 
 **LinkedIn:** https://linkedin.com/in/yourprofile  
 
