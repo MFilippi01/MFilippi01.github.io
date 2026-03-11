@@ -211,7 +211,7 @@ This virtual representation of the system allows the dynamics to be analyzed and
 The nonlinear equations of motion derived from the analytical model were implemented in **Simulink**, reproducing the dynamic interaction between the cart and the pendulum.  
 The resulting model accurately replicates the system behavior and provides a reliable environment for controller design and testing.
 
-<p align="center"> <img src="/images/simulink_model.jpg" width="65%"> </p>
+<p align="center"> <img src="/images/simulink_model.jpg" width="85%"> </p>
 
 ### Model Validation
 
@@ -227,12 +227,26 @@ The comparison shows a strong agreement between simulation and real measurements
 </div>
 
 <div style="text-align: center;">
-<img src="/images/constant_force_validation.png" width="450">
-<figcaption>cart response to a constant motor input comparison.</figcaption>
+<img src="/images/free_decay_validation_zoom.png" width="450">
+<figcaption>Zoom of the free decay dynamics comparison.</figcaption>
 </div>
 
 </div>
 
+
+<div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start;">
+
+<div style="text-align: center;">
+<img src="/images/free_decay_validation_cart.png" width="450">
+<figcaption>Cart response to a constant motor input comparison.</figcaption>
+</div>
+
+<div style="text-align: center;">
+<img src="/images/constant_force_validation_pendulum.png" width="450">
+<figcaption>Pendulum response to a constant motor input comparison.</figcaption>
+</div>
+
+</div>
 
 
 ## System Control Design
@@ -247,7 +261,7 @@ The controller was designed to stabilize the pendulum around the **upright unsta
 
 The control architecture was implemented in **Simulink** as a feedback loop where the measured pendulum angle is used to compute the control force applied to the cart.
 
-<p align="center"> <img src="/images/pid_system.png" width="65%"> </p>
+<p align="center"> <img src="/images/pid_system.png" width="85%"> </p>
 
 The PID gains were tuned using MATLAB’s **`pidtune`** function, which automatically selects the parameters to balance settling time, overshoot, and robustness.  
 After tuning the controller, the following behavior was obtained when stabilizing the pendulum in the upright position.
@@ -285,7 +299,7 @@ where \(K\) is the optimal feedback gain matrix obtained by solving the Riccati 
 
 The controller was implemented in **Simulink** using the state-space model of the system.
 
-<p align="center"> <img src="/images/lqr_system.png" width="65%"> </p>
+<p align="center"> <img src="/images/lqr_system.png" width="85%"> </p>
 
 The weighting matrices \(Q\) and \(R\) were tuned through a **grid search procedure**, evaluating multiple combinations and selecting the configuration that provided the best compromise between **settling time and overshoot**.
 
