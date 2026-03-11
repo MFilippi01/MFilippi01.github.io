@@ -9,56 +9,46 @@ redirect_from:
 
 {% include base_path %}
 
+<p>
+<a href="/files/CV_Matteo_Filippi.pdf" class="btn btn--primary" target="_blank">Download CV (PDF)</a>
+</p>
+
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
 
-Work experience
-======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* **M.Sc. in Mechanical Engineering – Mechatronics and Robotics**,  
+  Politecnico di Milano — *Sep 2023 – Mar 2026 (expected)*  
+  Expected grade: 110/110  
+  Main courses: Industrial Robotics, Mechatronics, Nonlinear Control, Machine Learning, Data Analysis
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* **Exchange Program – Mechanical Engineering**,  
+  Université libre de Bruxelles — *Sep 2022 – Feb 2023*
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* **B.Sc. in Mechanical Engineering**,  
+  Politecnico di Milano — *Sep 2020 – Sep 2023*
 
-Publications
+Technical Projects
 ======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
+
+* **A configuration-driven multi-agent framework for language-based human-robot collaboration**  
+  Master’s thesis on a modular architecture enabling robots to interpret natural language instructions and execute structured manipulation tasks.
+
+* **Mechanical design of a 4-DOF robotic manipulator**
+
+* **Bayesian optimization for PID tuning in a 7-DoF robotic arm**
+
+* **Linear inverted pendulum control**
+
+Technical Skills
 ======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
+
+* Programming: Python, C, MATLAB, ROS, Simulink  
+* Robotics & Control: Motion Planning, Control Systems Design  
+* AI & Perception: Computer Vision, Deep Learning Integration
+
+Languages
 ======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+
+* Italian — Native  
+* English — B2  
+* French — A2
