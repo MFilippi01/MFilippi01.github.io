@@ -62,12 +62,12 @@ To address this limitation, the map was manually corrected by adding the missing
 <div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start;">
 
 <div style="text-align: center;">
-<img src="/images/house_map.png" width="45%">
+<img src="/images/house_map.png" width="450">
 <figcaption>Raw occupancy grid map.</figcaption>
 </div>
 
 <div style="text-align: center;">
-<img src="/images/house_map_corrected.png" width="45%">
+<img src="/images/house_map_corrected.png" width="450">
 <figcaption>Corrected map used for path planning.</figcaption>
 </div>
 
