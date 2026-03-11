@@ -7,8 +7,8 @@ author_profile: true
 <br>
 You can reach me through the following channels:
 
-* **Email:** filippimatteo2001@gmail.com  
+* **Email:** [filippimatteo2001@gmail.com](mailto:filippimatteo2001@gmail.com)
 
-* **LinkedIn:** https://linkedin.com/in/yourprofile  
+* **LinkedIn:** [in/matteofilippi01](https://www.linkedin.com/in/matteofilippi01)
 
-* **GitHub:** https://github.com/MFilippi01
+* **GitHub:** [MFilippi01](https://github.com/MFilippi01)
