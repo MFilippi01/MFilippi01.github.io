@@ -237,7 +237,7 @@ The comparison shows a strong agreement between simulation and real measurements
 <div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start;">
 
 <div style="text-align: center;">
-<img src="/images/free_decay_validation_cart.png" width="450">
+<img src="/images/constant_force_validation_cart.png" width="450">
 <figcaption>Cart response to a constant motor input comparison.</figcaption>
 </div>
 
