@@ -4,13 +4,11 @@ title: "Contact"
 permalink: /contact/
 author_profile: true
 ---
-
-## Contact
-
+<br>
 You can reach me through the following channels:
 
-**Email:** filippimatteo2001@gmail.com  
+* **Email:** filippimatteo2001@gmail.com  
 
-**LinkedIn:** https://linkedin.com/in/yourprofile  
+* **LinkedIn:** https://linkedin.com/in/yourprofile  
 
-**GitHub:** https://github.com/MFilippi01
+* **GitHub:** https://github.com/MFilippi01
