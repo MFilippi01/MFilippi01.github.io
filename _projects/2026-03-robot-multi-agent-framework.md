@@ -12,8 +12,8 @@ excerpt: "Master's thesis on a configuration-driven multi-agent framework for ro
 ---
 
 <p>
-<a href="/files/multi-agent-framework-thesis.pdf" class="btn btn--primary" target="_blank">Download Full Document (PDF)</a>
-<a href="/files/multi-agent-framework-executive-summary.pdf" class="btn btn--info" target="_blank">Download Executive Summary (PDF)</a>
+<a href="/files/Tesi_Matteo_Filippi__consegna.pdf" class="btn btn--primary" target="_blank">Download Full Document (PDF)</a>
+<a href="/files/Executive_Summary_consegna.pdf" class="btn btn--info" target="_blank">Download Executive Summary (PDF)</a>
 </p>
 
 ## Overview
