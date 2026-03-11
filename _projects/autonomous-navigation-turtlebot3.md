@@ -36,7 +36,7 @@ Mapping was performed through the ROS `gmapping` package, which implements a **S
 The robot operates in the **TurtleBot3 House** environment available in the ROS TurtleBot3 simulation packages.  
 The environment represents a small indoor apartment composed of multiple rooms, corridors, and various pieces of furniture acting as obstacles for the robot.
 
-![TurtleBot3 House Environment](/images/turtlebot_house_environment.PNG)
+![TurtleBot3 House Environment](/images/turtlebot_house_environment.png)
 
 ### Mapping Process
 
@@ -60,9 +60,9 @@ The initial map produced by the SLAM process is shown on the left. However, beca
 To address this limitation, the map was manually corrected by adding the missing obstacle regions based on the known geometry of the environment. The corrected map used for path planning is shown on the right.
 
 <p align="center">
-<img src="/images/house_map_raw.PNG" width="45%">
+<img src="/images/house_map.png" width="45%">
 &nbsp;&nbsp;&nbsp;
-<img src="/images/house_map_corrected.PNG" width="45%">
+<img src="/images/house_map_with_missing_elements.png" width="45%">
 </p>
 
 ### Robot Model
@@ -70,7 +70,7 @@ To address this limitation, the map was manually corrected by adding the missing
 The platform used in this project is the **TurtleBot3**, a compact differential-drive mobile robot widely used for research and education in robotics.  
 The robot is equipped with a 2D LIDAR sensor that enables environment perception and SLAM-based mapping.
 
-![TurtleBot3 Robot](/images/turtlebot3_robot.PNG)
+![TurtleBot3 Robot](/images/turtlebot3_robot.png)
 
 ### Safety Area Definition
 
@@ -162,7 +162,7 @@ In the following scenario the robot must navigate between two points located in 
 The figure below shows the path computed by the A* algorithm.  
 The visualization highlights both the explored nodes during the search process and the optimal path connecting the start and goal locations.
 
-![A* Path Planning Result](/images/path6_result.JPG)
+![A* Path Planning Result](/images/path6_result.jpg)
 
 ### Performance Metrics
 
