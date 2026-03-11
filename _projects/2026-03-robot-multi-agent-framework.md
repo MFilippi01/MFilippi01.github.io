@@ -203,14 +203,10 @@ The following figures illustrate the trade-off between **reasoning accuracy and 
 
 <div style="text-align: center;">
 <img src="/images/accuracy_vs_model_size.png" width="450">
-<br>
-<em>Estimated accuracy vs model size.</em>
 </div>
 
 <div style="text-align: center;">
 <img src="/images/tokens_vs_model_size.png" width="450">
-<br>
-<em>Average tokens per second vs model size.</em>
 </div>
 
 </div>
@@ -225,7 +221,7 @@ This analysis makes it possible to identify where planning errors originate and 
 The first stage is responsible for transforming the user instruction into a fully explicit action sequence through a coordinated proposal–validation–correction mechanism.  
 Failure modes at this level are mainly associated with errors in task decomposition, missing or redundant actions, and inconsistencies between the generated plan and the scene constraints.
 
-<div style="text-align: center;">
+<div style="text-align: center; margin-bottom: 30px;">
 <img src="/images/first_stage_failure_modes.PNG" width="500">
 <br>
 <em>Failure mode distribution for the first stage of the Planning Agent.</em>
@@ -238,7 +234,7 @@ The diagram highlights the dominant sources of error in the explicitization proc
 The second stage refines the explicit plan by converting each action sequence into a normalized representation compliant with the action schema defined in the configuration file.  
 At this level, failure modes are primarily related to formatting inconsistencies, incorrect action canonicalization, and incompatibilities with the admissible primitive action set.
 
-<div style="text-align: center;">
+<div style="text-align: center; margin-bottom: 30px;">
 <img src="/images/second_stage_failure_modes.PNG" width="500">
 <br>
 <em>Failure mode distribution for the second stage of the Planning Agent.</em>
