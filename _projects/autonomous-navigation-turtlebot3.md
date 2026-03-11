@@ -59,17 +59,19 @@ After the exploration phase, the generated occupancy grid map was saved using th
 The initial map produced by the SLAM process is shown on the left. However, because the LIDAR sensor is mounted at a fixed height on the robot, it cannot detect objects located below that height. As a result, some obstacles such as furniture bases were not correctly represented in the occupancy grid.
 To address this limitation, the map was manually corrected by adding the missing obstacle regions based on the known geometry of the environment. The corrected map used for path planning is shown on the right.
 
-<p align="center">
-  <figure style="display:inline-block; text-align:center; margin-right:20px;">
-    <img src="/images/house_map.png" width="45%">
-    <figcaption>Raw occupancy grid map.</figcaption>
-  </figure>
+<div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start;">
 
-  <figure style="display:inline-block; text-align:center;">
-    <img src="/images/house_map_corrected.png" width="45%">
-    <figcaption>Corrected map used for path planning.</figcaption>
-  </figure>
-</p>
+<div style="text-align: center;">
+<img src="/images/house_map.png" width="45%">
+<figcaption>Raw occupancy grid map.</figcaption>
+</div>
+
+<div style="text-align: center;">
+<img src="/images/house_map_corrected.png" width="45%">
+<figcaption>Corrected map used for path planning.</figcaption>
+</div>
+
+</div>
 
 ### Robot Model
 
@@ -89,13 +91,17 @@ This process creates a safety margin that guarantees feasible and collision-free
 
 ## A* Algorithm Implementation
 
-Path planning was performed using the **A\*** (A-star) algorithm, a widely used search algorithm for computing optimal paths in graph-based environments.  
+Path planning was performed using the **A\*** algorithm, a widely used search algorithm for computing optimal paths in graph-based environments.  
 The algorithm evaluates possible paths between a start node and a goal node by minimizing a cost function that combines the distance already traveled and an estimate of the remaining distance to the goal.
 More specifically, A\* evaluates each node according to the function:
 
-\[
+<p align="center">
+
+$$
 f(n) = g(n) + h(n)
-\]
+$$
+
+</p>
 
 where:
 - **g(n)** represents the cost of the path from the start node to the current node  
