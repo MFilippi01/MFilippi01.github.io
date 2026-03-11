@@ -39,6 +39,7 @@ This configuration specifies:
 - the perception models used for object detection
 - the attributes included in the scene description
 - the parameters governing robot execution and reasoning modules
+
 Based on these definitions, the framework dynamically initializes the required components, including the robotic interface, perception models, and the locally deployed language model used for reasoning.
 At the same time, the robotic manipulator is moved to a predefined **home position**, ensuring a consistent reference state for the first scene acquisition.
 
@@ -51,6 +52,7 @@ This representation maintains:
 - object attributes
 - spatial relationships
 - task-relevant states
+
 Alongside the structured representation used internally by the system, a simplified **textual scene description** is generated to serve as contextual input for the reasoning modules.
 
 ### 3. Plan Generation
@@ -60,6 +62,7 @@ The planning agent receives:
 - the textual scene description
 - the action schema defined in the configuration
 - the selected locally deployed language model
+
 Based on these inputs, the planning module interprets the instruction as a **goal specification** rather than as a direct command.  
 The language model generates an ordered sequence of elementary actions that is consistent with the current scene state and the admissible action set.
 The resulting sequence forms the **operative plan**, which is then presented to the operator for validation before further processing.
@@ -71,6 +74,7 @@ During this stage the system iterates through the actions in the plan sequential
 1. The **Action Selection Agent** identifies the corresponding execution module for the current action.
 2. The **Action Parameter Extraction Agent** extracts the parameters required for execution.
 3. Instead of executing the action physically, the system **updates the internal scene representation as if the action had been performed**.
+
 This simulated execution allows the system to detect inconsistencies such as:
 - parameter extraction failures  
 - invalid object references  
@@ -84,7 +88,7 @@ The actions are executed sequentially using the parameters previously extracted 
 Before each execution step, compatibility checks ensure that the selected action is consistent with the current robot configuration and the required end-effector.
 After every action, the scene representation is updated to maintain consistency between the internal model and the physical environment.
 
----
+
 
 Through this structured pipeline, natural language reasoning, environmental perception, and robotic execution remain tightly coordinated while preserving clear architectural boundaries between probabilistic reasoning components and deterministic control modules.
 
@@ -136,3 +140,117 @@ The figure below shows an example of the structured representation generated for
 
 Once the structured representation is obtained, the framework resolves it deterministically against the internal scene representation.  
 The resolver evaluates the nested constraints from the innermost object outward, progressively filtering candidate objects based on class, attributes, and spatial relations. This process ultimately identifies the **unique object ID** corresponding to the linguistic reference. The associated robot pose is then retrieved from the scene representation and used as the execution parameter for the corresponding manipulation action.
+
+
+## Experimental Evaluation
+
+The proposed framework was experimentally evaluated on a real robotic setup implementing the manipulation primitives **pick**, **place**, **mix**, and **pour**. The experiments were designed to assess the reliability and computational performance of the language-driven pipeline, including the **Planning Agent**, and the **Parameter Extraction Agent**.
+A total of **500 test executions** were conducted, covering a wide range of natural language instructions and scene configurations. The evaluation focuses on three main aspects: comparative performance across different locally deployed language models, scaling behavior with increasing model size, and a detailed analysis of planning failure modes within the system.
+
+### Model Comparison
+
+To evaluate the influence of the language model on the reasoning components of the framework, a comparative analysis was conducted across four locally deployed instruction-tuned LLMs.  
+The evaluation considers the estimated accuracy of three modules: the **Planning Agent**, the **Object Grounding module**, and the **Mixing Speed Extraction Agent**.
+
+The results highlight that **Qwen2.5-7B-Instruct-AWQ achieves the best performance across the evaluated modules**, confirming its suitability for structured reasoning tasks within the proposed architecture.
+
+| Model | Planning Agent Accuracy (p) | Object Grounding Accuracy (p) | Mixing Speed Extraction Accuracy (p) |
+|------|-----------------------------|-------------------------------|--------------------------------------|
+| Qwen2.5-7B-Instruct-AWQ | 0.870 | 0.929 | 1.000 |
+| Mistral-7B-Instruct-v0.2-AWQ |  0.689 | 0.451 | 0.933 |
+| Meta-Llama-3.1-8B-Instruct-AWQ-INT4 | 0.698 |  0.774 | 0.987 |
+| DeepSeek-Coder-6.7B-Instruct-AWQ | 0.620 | 0.894 | 1.000 |
+
+### Performance Scaling
+
+To analyze the impact of model size on both reasoning accuracy and computational performance, an additional evaluation was conducted using four models from the **Qwen2.5 instruction-tuned family**.  
+The objective of this experiment is to investigate the trade-off between **accuracy and inference throughput**, measured in terms of average token generation speed.
+
+The analysis considers the three main reasoning modules of the framework: the **Planning Agent**, the **Object Grounding module**, and the **Mixing Speed Extraction Agent**.
+
+#### Planning Agent
+
+| Model | Planning Agent Accuracy (p) | Average Tokens per Second [s] |
+|------|-----------------------------|--------------------------------|
+| Qwen2.5-0.5B-Instruct | 0.068 | 175.41 |
+| Qwen2.5-1.5B-Instruct | 0.326 | 77.27 |
+| Qwen2.5-3B-Instruct | 0.542 | 54.53 |
+| Qwen2.5-7B-Instruct-AWQ | 0.870 | 43.09 |
+
+#### Object Grounding
+
+| Model | Object Grounding Accuracy (p) | Average Tokens per Second [s] |
+|------|--------------------------------|--------------------------------|
+| Qwen2.5-0.5B-Instruct | 0.191 | 198.75 |
+| Qwen2.5-1.5B-Instruct | 0.609 | 88.98 |
+| Qwen2.5-3B-Instruct | 0.923 | 58.68 |
+| Qwen2.5-7B-Instruct-AWQ | 0.929 | 43.63 |
+
+#### Mixing Speed Extraction
+
+| Model | Mixing Speed Accuracy (p) | Average Tokens per Second [s] |
+|------|----------------------------|--------------------------------|
+| Qwen2.5-0.5B-Instruct | 0.400 | 123.86 |
+| Qwen2.5-1.5B-Instruct | 0.747 | 69.96 |
+| Qwen2.5-3B-Instruct | 1.000 | 47.97 |
+| Qwen2.5-7B-Instruct-AWQ | 1.000 | 41.14 |
+
+
+
+The following figures illustrate the trade-off between **reasoning accuracy and inference throughput** across the Qwen model family.
+
+<div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start;">
+
+<div style="text-align: center;">
+<img src="/images/accuracy_vs_model_size.png" width="450">
+<br>
+<em>Estimated accuracy vs model size.</em>
+</div>
+
+<div style="text-align: center;">
+<img src="/images/tokens_vs_model_size.png" width="450">
+<br>
+<em>Average tokens per second vs model size.</em>
+</div>
+
+</div>
+
+### Planning Agent Failure Mode Analysis
+
+To better understand the internal limitations of the planning component, the behavior of the **Planning Agent** was analyzed separately across its two sequential stages: **Instruction Explicitization** and **Primitive Action Normalization**.  
+This analysis makes it possible to identify where planning errors originate and how they propagate within the overall reasoning pipeline.
+
+#### First Stage — Instruction Explicitization
+
+The first stage is responsible for transforming the user instruction into a fully explicit action sequence through a coordinated proposal–validation–correction mechanism.  
+Failure modes at this level are mainly associated with errors in task decomposition, missing or redundant actions, and inconsistencies between the generated plan and the scene constraints.
+
+<div style="text-align: center;">
+<img src="/images/first_stage_failure_modes.PNG" width="500">
+<br>
+<em>Failure mode distribution for the first stage of the Planning Agent.</em>
+</div>
+
+The diagram highlights the dominant sources of error in the explicitization process, showing how the most critical failures arise before action normalization and parameter extraction.
+
+#### Second Stage — Primitive Action Normalization
+
+The second stage refines the explicit plan by converting each action sequence into a normalized representation compliant with the action schema defined in the configuration file.  
+At this level, failure modes are primarily related to formatting inconsistencies, incorrect action canonicalization, and incompatibilities with the admissible primitive action set.
+
+<div style="text-align: center;">
+<img src="/images/second_stage_failure_modes.PNG" width="500">
+<br>
+<em>Failure mode distribution for the second stage of the Planning Agent.</em>
+</div>
+
+The second-stage analysis complements the previous one by showing which errors are introduced during normalization, thus providing a clearer view of the internal robustness of the planning pipeline.
+
+## Key Contributions
+
+The main contributions of this work can be summarized as follows:
+- **Configuration-driven multi-agent architecture** that integrates natural language reasoning with deterministic robotic execution through clearly separated system components.
+- **Structured LLM planning pipeline** based on coordinated model calls and a proposal–validation–correction mechanism that improves robustness in task decomposition.
+- **Hybrid object grounding approach** combining language-based schema extraction with deterministic constraint-based resolution on the structured scene model.
+- **Full-plan simulation mechanism** that validates the entire action sequence before physical execution, ensuring consistency and preventing execution errors.
+- **Experimental evaluation of locally deployed LLMs**, including model comparison, performance scaling analysis, and failure mode analysis of the planning process.
