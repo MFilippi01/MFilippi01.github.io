@@ -18,12 +18,14 @@ Mechanical Engineer specialized in Mechatronics and Robotics at Politecnico di M
 
 ## Education
 
-* **M.Sc. in Mechanical Engineering – Mechatronics and Robotics**,  
+* **M.Sc. in Mechanical Engineering – Mechatronics and Robotics**
+  
   Politecnico di Milano — *Sep 2023 - Mar 2026*  
   Expected grade: 110/110  
   Main courses: Industrial Robotics, Mechatronics, Nonlinear Control, Machine Learning, Data Analysis
 
-* **B.Sc. in Mechanical Engineering**,  
+* **B.Sc. in Mechanical Engineering**
+   
   Politecnico di Milano — *Sep 2020 - Sep 2023*
   Exchange Program: Université libre de Bruxelles — *Sep 2022 - Feb 2023*
   Main courses: Applied Mechanics, Machine Design, Numerical Methods for Engineering, Vibrations
@@ -31,12 +33,16 @@ Mechanical Engineer specialized in Mechatronics and Robotics at Politecnico di M
 ## Most relevant technical Projects
 
 * **A configuration-driven multi-agent framework for language-based human-robot collaboration**
+  
   Master’s thesis on the design and implementation of a configuration-driven multi-agent framework enabling robots to interpret natural language instructions and execute structured manipulation tasks
 * **Mechanical design of a 4-DOF robot**
+  
   Designed and modeled a 4-DOF robotic manipulator, focusing on mechanical architecture, joint configuration, and kinematic and dynamic analysis using CAD and 3D simulation environments.
 * **Bayesian Optimization for PID tuning in a 7 DOF robotic arm**
+  
   Implemented Bayesian Optimization to tune PID gains and estimate link masses of a 7-DoF robotic arm, improving trajectory tracking and gravity compensation while reducing simulation cost.
 * **Linear pendulum control**
+
   Designed control strategies for a linear inverted pendulum, including swing-up and stabilization, and validated them on a real experimental setup.
 
 ## Technical Skills
