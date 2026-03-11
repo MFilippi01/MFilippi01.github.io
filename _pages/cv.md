@@ -23,9 +23,6 @@ Mechanical Engineer specialized in Mechatronics and Robotics at Politecnico di M
   Expected grade: 110/110  
   Main courses: Industrial Robotics, Mechatronics, Nonlinear Control, Machine Learning, Data Analysis
 
-* **Exchange Program – Mechanical Engineering**,  
-  Université libre de Bruxelles — *Sep 2022 - Feb 2023*
-
 * **B.Sc. in Mechanical Engineering**,  
   Politecnico di Milano — *Sep 2020 - Sep 2023*
   Exchange Program: Université libre de Bruxelles — *Sep 2022 - Feb 2023*
