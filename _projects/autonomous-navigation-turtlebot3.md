@@ -62,7 +62,7 @@ To address this limitation, the map was manually corrected by adding the missing
 <p align="center">
 <img src="/images/house_map.png" width="45%">
 &nbsp;&nbsp;&nbsp;
-<img src="/images/house_map_with_missing_elements.png" width="45%">
+<img src="/images/house_map_corrected.png" width="45%">
 </p>
 
 ### Robot Model
