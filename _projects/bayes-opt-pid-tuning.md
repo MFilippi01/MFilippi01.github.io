@@ -39,7 +39,7 @@ The reference trajectory and velcoity profiles used during the optimization are 
 The robot dynamics used in the simulations follow the standard rigid-body formulation:
 
 $$
-M(q)\ddot{q} + C(q,\dot{q})\dot{q} + g(q) = \tau
+B(q)\ddot{q} + C(q,\dot{q})\dot{q} + g(q) = \tau
 $$
 
 
@@ -70,12 +70,37 @@ This allows the optimizer to directly account for the **coupling effects between
 
 ### Cost Function in Joint Space
 
-The first objective function is defined in **joint space**, minimizing the tracking error between the measured joint trajectories and the reference trajectories.
+The joint-space cost function used to guide the optimization is defined as:
 
 $$
-J_{joint} = \sum_{i=1}^{7} \int_0^T (q_i(t) - q_{i,ref}(t))^2 \, dt
+J = \mathbf{w}^{T}\sum_{i=1}^{7}\boldsymbol{\epsilon}^{i} + p_{max} + p_{prop}
 $$
 
+where
+
+$$
+\mathbf{w} =
+\begin{bmatrix}
+w_{e_{max}} \\
+w_{\dot e_{max}} \\
+w_{e_{avg}} \\
+w_{\dot e_{avg}} \\
+w_{\ddot e_{avg}} \\
+w_{\tau_{max}}
+\end{bmatrix},
+\qquad
+\boldsymbol{\epsilon}^{i} =
+\begin{bmatrix}
+e^{i}_{max} \\
+\dot e^{i}_{max} \\
+e^{i}_{avg} \\
+\dot e^{i}_{avg} \\
+\ddot e^{i}_{avg} \\
+\tau^{i}_{max}
+\end{bmatrix}
+$$
+
+The term \(e^i\) denotes the angular tracking error of the \(i^{th}\) joint.
 The resulting controller provides very accurate **joint-space tracking**, as shown in the plots below.
 
 
@@ -183,11 +208,38 @@ The controller was then re-optimized using the updated reference trajectory, res
 
 ### Cost Function in Workspace
 
+
 A second objective function was defined in **workspace**, minimizing the tracking error of the **end-effector position**.
 
 $$
-J_{workspace} = \int_0^T \|x(t) - x_{ref}(t)\|^2 dt
+J = \mathbf{w}^{T}\sum_{i=1}^{3}\boldsymbol{\epsilon}^{i} + p_{max} + p_{prop}
 $$
+
+where
+
+$$
+\mathbf{w} =
+\begin{bmatrix}
+w_{e_{max}} \\
+w_{\dot e_{max}} \\
+w_{e_{avg}} \\
+w_{\dot e_{avg}} \\
+w_{\ddot e_{avg}} \\
+w_{\tau_{max}}
+\end{bmatrix},
+\qquad
+\boldsymbol{\epsilon}^{i} =
+\begin{bmatrix}
+e^{i}_{max} \\
+\dot e^{i}_{max} \\
+e^{i}_{avg} \\
+\dot e^{i}_{avg} \\
+\ddot e^{i}_{avg} \\
+\tau^{i}_{max}
+\end{bmatrix}
+$$
+
+The term \(e^i\) denotes the **positional tracking error of the end-effector** along the \(i^{th}\) Cartesian axis.
 
 This formulation prioritizes accurate tracking of the end-effector trajectory.
 
