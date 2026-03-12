@@ -15,12 +15,9 @@ excerpt: "Bayesian Optimization framework for tuning PID gains and estimating dy
 
 This project investigates the use of **Bayesian Optimization** to automatically tune the **PID gains of a 7-DoF Franka Panda robotic manipulator** for accurate trajectory tracking.  
 The optimization problem involves **21 controller parameters**, making manual tuning impractical.
-
 Two optimization strategies were explored: a **one-shot approach**, where all gains are optimized simultaneously, and a **cascade approach**, where joints are tuned sequentially to reduce the optimization dimensionality.  
 Two cost functions were also considered: one defined in **joint space** and one in **workspace**.
-
 The reference trajectory and velcoity profiles used during the optimization are shown below.
-
 
 <div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start;">
 
@@ -47,9 +44,7 @@ $$
 
 The controller tuning was performed using **MATLAB’s `bayesopt`** function.  
 The optimization problem involves **21 parameters**, corresponding to the proportional, integral, and derivative gains of the seven robot joints.
-
 Bayesian Optimization was used to efficiently explore this **high-dimensional parameter space** through a **Gaussian Process (GP) surrogate model**, which approximates the objective function and guides the search toward promising regions.
-
 A **two-phase strategy** was adopted to balance exploration and exploitation.
 
 ### Exploration Phase
@@ -76,7 +71,7 @@ $$
 J = \mathbf{w}^{T}\sum_{i=1}^{7}\boldsymbol{\epsilon}^{i} + p_{max} + p_{prop}
 $$
 
-where
+where:
 
 $$
 \mathbf{w} =
@@ -102,7 +97,6 @@ $$
 
 The term \(e^i\) denotes the angular tracking error of the \(i^{th}\) joint.
 The resulting controller provides very accurate **joint-space tracking**, as shown in the plots below.
-
 
 <div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start;">
 
@@ -140,7 +134,7 @@ To ensure realistic behavior, **motor torque limits** consistent with the Franka
   </thead>
   <tbody>
     <tr>
-      <td style="padding:8px;"><b>Max torque</b></td>
+      <td style="padding:8px; text-align:left;"><b>Max torque</b></td>
       <td>87 Nm</td>
       <td>87 Nm</td>
       <td>87 Nm</td>
@@ -215,7 +209,7 @@ $$
 J = \mathbf{w}^{T}\sum_{i=1}^{3}\boldsymbol{\epsilon}^{i} + p_{max} + p_{prop}
 $$
 
-where
+where:
 
 $$
 \mathbf{w} =
@@ -239,8 +233,7 @@ e^{i}_{avg} \\
 \end{bmatrix}
 $$
 
-The term \(e^i\) denotes the **positional tracking error of the end-effector** along the \(i^{th}\) Cartesian axis.
-
+The term $e^i$ denotes the **positional tracking error of the end-effector** along the $i$-th Cartesian axis.
 This formulation prioritizes accurate tracking of the end-effector trajectory.
 
 <div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start;">
@@ -262,12 +255,9 @@ As expected, this cost function produces **better tracking in workspace**, but s
 
 To reduce the complexity of the optimization problem, a **cascade optimization strategy** was also investigated.  
 Instead of optimizing all **21 PID gains simultaneously**, the controller parameters are tuned **sequentially joint by joint**, reducing the dimensionality of each optimization step.
-
 The procedure starts from the **outermost joint** and progressively moves toward the **base of the manipulator**.  
 At each step, only the PID gains of the current joint are optimized, while the gains of the previously tuned joints remain fixed. This approach decomposes the original high-dimensional problem into a series of smaller and more tractable optimization tasks.
-
 The cascade approach relies on the assumption that the **coupling effects between joints are limited**, particularly when moving from the end-effector toward the base. Under this assumption, the behavior of the already tuned joints does not significantly affect the optimization of the remaining ones.
-
 The resulting controller achieves stable and accurate tracking, as shown in the plots below.
 
 <div style="display: flex; gap: 20px; justify-content: center; align-items: flex-start;">
@@ -289,10 +279,8 @@ Compared with the **one-shot optimization**, the cascade approach simplifies the
 
 In many practical scenarios, the **link masses** required by the dynamic model are not precisely known.  
 Since these parameters directly affect gravity and Coriolis compensation, inaccurate mass values can degrade the tracking performance of the controller.
-
 To address this issue, **Bayesian Optimization** was also used to estimate the unknown masses.  
 The estimation procedure is based on the robot dynamic model and exploits simulations in which **known joint torques** are applied. The masses are then tuned so that the **accelerations predicted by the model** match the reference accelerations as closely as possible.
-
 The control input used for the estimation is defined as:
 
 $$
@@ -310,7 +298,6 @@ B(q,m)\ddot{q}_d + C(q,\dot{q},m)\dot{q} + g(q,m)
 $$
 
 A cost function is therefore defined to penalize the difference between the **simulated accelerations** and the **reference accelerations**, and the unknown mass parameters are optimized accordingly.
-
 It is important to note that **links 2, 4, and 6 were not estimated**, since their mass contribution is set to zero in the adopted dynamic model.
 
 The estimated masses are reported below.
@@ -331,7 +318,7 @@ The estimated masses are reported below.
   </thead>
   <tbody>
     <tr>
-      <td style="padding:8px;"><b>Real mass [kg]</b></td>
+      <td style="padding:8px; text-align:left;"><b>Real mass [kg]</b></td>
       <td>1</td>
       <td>0</td>
       <td>3</td>
@@ -341,7 +328,7 @@ The estimated masses are reported below.
       <td>2.5</td>
     </tr>
     <tr>
-      <td style="padding:8px;"><b>Estimated mass [kg]</b></td>
+      <td style="padding:8px; text-align:left;"><b>Estimated mass [kg]</b></td>
       <td>1.0031</td>
       <td>/</td>
       <td>2.9972</td>
@@ -410,14 +397,14 @@ The performance obtained with the two cost functions is summarized in the tables
   </thead>
   <tbody>
     <tr>
-      <td style="padding:8px;"><b>Joint-space cost</b></td>
+      <td style="padding:8px; text-align:left;"><b>Joint-space cost</b></td>
       <td style="color:#6DBE45;"><b>0.0659</b></td>
       <td style="color:#6DBE45;"><b>0.0317</b></td>
       <td style="color:#6DBE45;"><b>62.8319</b></td>
       <td style="color:#6DBE45;"><b>0.2372</b></td>
     </tr>
     <tr>
-      <td style="padding:8px;"><b>Workspace cost</b></td>
+      <td style="padding:8px; text-align:left;"><b>Workspace cost</b></td>
       <td style="color:red;"><b>0.2136</b></td>
       <td style="color:red;"><b>0.0426</b></td>
       <td style="color:red;"><b>62.8320</b></td>
@@ -431,6 +418,7 @@ The performance obtained with the two cost functions is summarized in the tables
 <table style="border-collapse: collapse; text-align: center;">
   <thead style="background-color:#1f3a5f; color:white;">
     <tr>
+      <th style="padding:8px;">Metric</th>
       <th style="padding:8px;">e<sup>x</sup><sub>max</sub> [m]</th>
       <th style="padding:8px;">e<sup>x</sup><sub>avg</sub> [m]</th>
       <th style="padding:8px;">ė<sup>x</sup><sub>max</sub> [m/s]</th>
@@ -439,12 +427,14 @@ The performance obtained with the two cost functions is summarized in the tables
   </thead>
   <tbody>
     <tr>
+      <td style="padding:8px; text-align:left;"><b>Joint-space cost</b></td>
       <td style="color:red;"><b>7.22 · 10<sup>-4</sup></b></td>
       <td style="color:red;"><b>1.33 · 10<sup>-4</sup></b></td>
       <td style="color:red;"><b>0.1423</b></td>
       <td style="color:red;"><b>0.0012</b></td>
     </tr>
     <tr>
+      <td style="padding:8px; text-align:left;"><b>Workspace cost</b></td>
       <td style="color:#6DBE45;"><b>2.23 · 10<sup>-4</sup></b></td>
       <td style="color:#6DBE45;"><b>1.22 · 10<sup>-4</sup></b></td>
       <td style="color:#6DBE45;"><b>0.1412</b></td>
@@ -464,7 +454,7 @@ The **joint-space cost function** produces the lowest joint tracking errors, as 
 The performance of the two optimization strategies, **one-shot** and **cascade optimization**, is compared in the figure below.
 
 <p align="center">
-<img src="/images/one_shot_vs_cascade.jpg" width="70%">
+<img src="/images/one_shot_vs_cascade.JPG" width="70%">
 <figcaption>Comparison between one-shot and cascade optimization performance.</figcaption>
 </p>
 
