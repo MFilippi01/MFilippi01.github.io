@@ -1,0 +1,14 @@
+---
+title: "Bayesian Optimization for PID Tuning of a 7-DoF Robotic Manipulator"
+collection: projects
+permalink: /projects/bayes-opt-pid-tuning/
+date: 2025-07-11
+layout: single
+author_profile: true
+toc: true
+toc_sticky: true
+classes: wide
+excerpt: "Bayesian Optimization framework for tuning PID gains and estimating dynamic parameters of a 7-DoF Franka Panda robot, enabling efficient exploration of high-dimensional control parameters.."
+---
+
+## Overview
