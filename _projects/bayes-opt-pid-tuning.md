@@ -455,12 +455,11 @@ The performance of the two optimization strategies, **one-shot** and **cascade o
 
 <p align="center">
 <img src="/images/one_shot_vs_cascade.JPG" width="70%">
-<figcaption>Comparison between one-shot and cascade optimization performance.</figcaption>
+<figcaption style="text-align:center;">Comparison between one-shot and cascade optimization performance.</figcaption>
 </p>
 
 The results show that **one-shot optimization** achieves a better global optimum.  
 By optimizing all controller parameters simultaneously, this approach is able to account for the **coupling effects between the robot joints**, leading to lower overall tracking errors.
-
 The **cascade approach**, on the other hand, decomposes the tuning problem into smaller sequential optimizations.  
 This makes the procedure **more stable and easier to manage**, and reduces the dimensionality of each optimization step.  
 However, since the coupling between joints is only partially captured, the final solution is generally **less optimal** than the one obtained with the one-shot strategy.
@@ -471,10 +470,7 @@ However, since the coupling between joints is only partially captured, the final
 
 This project demonstrated the effectiveness of **Bayesian Optimization** for tuning the PID gains of a high-dimensional robotic control problem.  
 The approach allows efficient exploration of the **21-dimensional parameter space**, enabling automatic controller tuning without requiring manual parameter adjustments.
-
 The comparison between the optimization strategies showed that **one-shot optimization** achieves the best overall performance, as it captures the **coupling effects between the robot joints** and allows the optimizer to reach a better global optimum.
-
 The **cascade approach**, although slightly less optimal, reduces the dimensionality of the optimization problem and results in a **more stable and computationally manageable tuning process**.
-
 Future work could extend this framework toward **online controller tuning** or **adaptive control strategies**, allowing the robot to continuously update its controller parameters in response to changes in the system dynamics.
 
